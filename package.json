@@ -1,0 +1,29 @@
+{
+  "name": "UserManager",
+  "version": "0.1.0",
+  "description": "UserManager",
+  "main": "usermanager.js",
+  "scripts": {
+    "test": "mocha test/test.js",
+    "start": "node usermanager.js"
+  },
+  "repository": "",
+  "keywords": [
+    "node.js",
+    "eclipse",
+    "nodeclipse"
+  ],
+  "dependencies": {
+    "body-parser": "~1.14.2",
+    "express": "~4.0.0",
+    "istanbul": "^0.4.1",
+    "oboe": "~2.1.2"
+  },
+  "devDependencies": {
+    "mocha": "~2.3.4",
+    "expect": "~1.13.4"
+  },
+  "author": "Massimiliano Ziccardi",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}
