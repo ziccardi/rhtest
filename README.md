@@ -6,10 +6,19 @@ This application provides rest services to manager a JSON file containing a list
 It is just an exercise and must not be seen as production level (using the JSON just to exchange data and
 persist them in a DB would have been far better, for example).
 
+## Testing
+
+You can run the tests by issuing 
+
+```
+npm test
+```
 ## Usage
 Download all the files, then run the application with:
 
+```
 npm start
+```
 
 By default, the application starts a server on 127.0.0.1:1337. It can be modified editing the config.js file.
 All the rest services are reachable on :
@@ -36,8 +45,8 @@ To delete one or more user, use the syntax is exactly the same to be used to get
 In the body of the delete action, put a field named as the attribute you want to use to select the users to be deleted.
 For example, to delete all the male users named 'andy', you will have to put the following attributes inside the body:
 
-user.name.first with value 'male'
-user.name.first with value 'andy'
+* user.name.first with value 'male'
+* user.name.first with value 'andy'
 
 ### Adding a new user
 
