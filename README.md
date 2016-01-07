@@ -58,7 +58,7 @@ For example, to delete all the male users named 'andy', you will have to put the
 
 ### Adding a new user
 
-To add a new user, you must use the PUT method and insert a 'user' field inside the body of the message.
+To add a new user, you must use the POST method and insert a 'user' field inside the body of the message.
 The content of the 'user' field must be a JSon describing a User, for example:
 
 ```
