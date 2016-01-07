@@ -1,7 +1,8 @@
 var config = require('../config.js');
 var get = require('../get.js');
-var put = require('../put.js');
+var post = require('../post.js');
 var del = require('../delete.js');
+var put = require('../put.js');
 
 config.jsonFile = './test/testUsers.json';
 var assert = require('assert');
@@ -73,7 +74,7 @@ describe('GET', function() {
 			
 			var user1 = require('./user1.json');
 			
-			put.addUser(user1, function() {
+			post.addUser(user1, function() {
 				done();
 			})
 		});
@@ -110,7 +111,7 @@ describe('GET', function() {
 			
 			var user2 = require('./user2.json');
 			
-			put.addUser(user2, function() {
+			post.addUser(user2, function() {
 				done();
 			})
 		});
@@ -119,7 +120,7 @@ describe('GET', function() {
 		
 		it('should return outcome success', function(done) {
 			
-			put.addUser(undefined, function() {
+			post.addUser(undefined, function() {
 				done();
 			})
 		});
@@ -210,10 +211,10 @@ describe('GET', function() {
 	}),
 	describe('#getUsers(INVALID FILTER)', function() {
 		
-		it('should return 49 users', function(done) {
+		it('should return 0 users', function(done) {
 			
 			get.getUsers({'invalid.field' : 'useless'}, function(users) {
-				assert.equal(49, users.results.length);
+				assert.equal(0, users.results.length);
 				done();
 
 			}, function(error) {
@@ -223,15 +224,33 @@ describe('GET', function() {
 	}),
 	describe('#getUsers(INVALID FILTER - LAST PART)', function() {
 		
-		it('should return 49 users', function(done) {
+		it('should return 0 users', function(done) {
 			
 			get.getUsers({'user.invalid' : 'useless'}, function(users) {
-				assert.equal(49, users.results.length);
+				assert.equal(0, users.results.length);
 				done();
 
 			}, function(error) {
 				throw new Error();
 			});
+		});
+	}),
+	describe('#updateUser(male named ricky to male named barabba)', function() {
+		
+		var newUser = require('./barabba.json');
+		
+		it('should return success', function(done) {
+			
+			put.updateUser({'user.gender':'male', 'user.name.first':'ricky'}, newUser, function() {
+				get.getUsers({'user.gender':'male', 'user.name.first':'barabba'}, function(users) {
+					assert.equal(1, users.results.length);
+					done();
+				}, function(error) {
+					throw new Error();
+				});
+			}, function(error) {
+				throw new Error(error);
+			})
 		});
 	})
 });

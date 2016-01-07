@@ -2,6 +2,7 @@ var config = require('./config.js');
 var getMethods = require('./get.js');
 var postMethods = require('./post.js');
 var deleteMethods = require('./delete.js');
+var putMethods = require('./put.js');
 var express = require('express');
 var http = express();
 var bodyParser = require('body-parser');
@@ -70,13 +71,26 @@ function deleteUserRest(req, res) {
 	}, filter);
 }
 
+function editUserRest(req, res) {
+	var filter = req.body;
+	var newUser = req.body.user;
+	
+	delete filter.user;
+	
+	putMethods.updateUser(filter, JSON.parse(newUser), function() {
+		res.json({'outcome': 'success'});
+	}, function(msg) {
+		res.json({'outcome' : 'fail', 'message' : msg});
+	});
+}
+
 http.use( bodyParser.json() );       // to support JSON-encoded bodies
 http.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
 
 http.get('/users', getUsersRest);
-
+http.put('/users', editUserRest); 
 http.post('/users', addUserRest); 
 http.delete('/users', deleteUserRest);
 

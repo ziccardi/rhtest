@@ -11,8 +11,8 @@ function accept(obj, path, value) {
 	for (var i = 0, path = path.split('.'), len = path.length; i < len; i++) {
 		obj = obj[path[i]];
 		if (!obj) {
-			// invalid filter. Ignoring.
-			return true;
+			// Requested attribute does not exists.
+			return false;
 		}
 	}
 
