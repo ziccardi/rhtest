@@ -1,6 +1,6 @@
 var config = require('./config.js');
 var getMethods = require('./get.js');
-var putMethods = require('./put.js');
+var postMethods = require('./post.js');
 var deleteMethods = require('./delete.js');
 var express = require('express');
 var http = express();
@@ -42,7 +42,7 @@ function getUsersRest(req, response) {
 function addUserRest(req, res) {
 	var jsonUser = req.body.user;
 	
-	putMethods.addUser(JSON.parse(jsonUser),function() {
+	postMethods.addUser(JSON.parse(jsonUser),function() {
 		res.writeHead(200, {
 			'Content-Type' : 'application/json'
 		});
@@ -77,7 +77,7 @@ http.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 http.get('/users', getUsersRest);
 
-http.put('/users', addUserRest); 
+http.post('/users', addUserRest); 
 http.delete('/users', deleteUserRest);
 
 var server = http.listen(config.port, config.ip, function() {
