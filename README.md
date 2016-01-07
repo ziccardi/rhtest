@@ -97,4 +97,8 @@ The content of the 'user' field must be a JSon describing a User, for example:
   }
 ```
 
+### Update a user
 
+To update a user user, you must use the PUT method and insert a 'user' field inside the body of the message (as per the add user) and a filter field (as per the get user).
+
+N.B. : all the users matching the filter will be deleted and the new passed in user will be inserted, so pay attention to make the filter match the user you want to update.
