@@ -1,3 +1,4 @@
+var config = require('./config.js');
 var getMethods = require('./get.js');
 var putMethods = require('./put.js');
 var deleteMethods = require('./delete.js');
@@ -79,7 +80,7 @@ http.get('/users', getUsersRest);
 http.put('/users', addUserRest); 
 http.delete('/users', deleteUserRest);
 
-var server = http.listen(1337, '127.0.0.1', function() {
+var server = http.listen(config.port, config.ip, function() {
 
 	var host = server.address().address;
 	var port = server.address().port;
